@@ -1,0 +1,35 @@
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        freq=1
+        ans=[]
+        i=0
+        n=len(chars)
+        if n==1:
+            return n
+        while i<n-1:
+            if chars[i]==chars[i+1]:
+                freq+=1
+            else:
+                ans.append(chars[i])
+                if freq!=1 and freq<=9:
+                    ans.append(str(freq))
+                elif freq>9:
+                    st=str(freq)
+                    for j in st:
+                        ans.append(j)
+                freq=1
+            i+=1
+        if chars[-1]!=chars[-2]:
+            ans.append(chars[-1])
+        else:
+            ans.append(chars[-1])
+            if freq!=1 and freq<=9:
+                    ans.append(str(freq))
+            elif freq>9:
+                st=str(freq)
+                for j in st:
+                    ans.append(j)
+        al=len(ans)
+        for i in range(al):
+            chars[i]=ans[i]
+        return al
